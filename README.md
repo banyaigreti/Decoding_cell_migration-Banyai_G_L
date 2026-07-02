@@ -1,2 +1,7 @@
-# Single-cell-migration-analysis
-Noise filtering of the semi-automatically tracked data, calculation of the migration parameters (for both manual, semi-automatic, and noise-filtered semi-automatic tracking data), Area Under the Curve (AUC) calculation, and statistical analysis.
+# Codes used for the dissertation of Greta Lilla Banyai: Decoding cell migration - the impact of analytical choices on biological interpretation
+Single-cell migration analysis folder:
+Simulation.m matlab file for the random walk simulation of the cell migration, including the whole pipeline described in Greta Lilla Banyai - Decoding cell migration – the impact of analytical choices on biological interpretation; Methods Part 4.4
+Single-cell_experiment.m matlab file include the whole process of the analysis of the single-cell migration data (exept the determination of cell line specific features which was analysed via ImageJ), Greta Lilla Banyai - Decoding cell migration – the impact of analytical choices on biological interpretation; Methods Part 4.3 -> 4.3.1 - 4.3.2 (including the noise filtering of the semi-automatically tracked data, calculation of the migration parameters (for both manual, semi-automatic, and noise-filtered semi-automatic tracking data), Area Under the Curve (AUC) calculation, and statistical analysis.)
+Machine learning pipeline for migration assay comparision folder:
+sratch_Z-E_assay_analysis.ipynb coolab file for the machine learning analysis of the scrathc assay and Z-E assay results. Described in Greta Lilla Banyai - Decoding cell migration – the impact of analytical choices on biological interpretation; Methods Part 4.7 -> 4.7.1.2 and 4.7.2.
+single-cell_analysis.ipynb coolab file for the machine learning analysis of the single-cell assay results. Described in Greta Lilla Banyai - Decoding cell migration – the impact of analytical choices on biological interpretation; Methods Part 4.7 -> 4.7.1.1 and 4.7.2.
