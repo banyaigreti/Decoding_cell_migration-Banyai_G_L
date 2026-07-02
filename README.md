@@ -1,7 +1,51 @@
-# Codes used for the dissertation of Greta Lilla Banyai: Decoding cell migration - the impact of analytical choices on biological interpretation
-Single-cell migration analysis folder:
-Simulation.m matlab file for the random walk simulation of the cell migration, including the whole pipeline described in Greta Lilla Banyai - Decoding cell migration – the impact of analytical choices on biological interpretation; Methods Part 4.4
-Single-cell_experiment.m matlab file include the whole process of the analysis of the single-cell migration data (exept the determination of cell line specific features which was analysed via ImageJ), Greta Lilla Banyai - Decoding cell migration – the impact of analytical choices on biological interpretation; Methods Part 4.3 -> 4.3.1 - 4.3.2 (including the noise filtering of the semi-automatically tracked data, calculation of the migration parameters (for both manual, semi-automatic, and noise-filtered semi-automatic tracking data), Area Under the Curve (AUC) calculation, and statistical analysis.)
-Machine learning pipeline for migration assay comparision folder:
-sratch_Z-E_assay_analysis.ipynb coolab file for the machine learning analysis of the scrathc assay and Z-E assay results. Described in Greta Lilla Banyai - Decoding cell migration – the impact of analytical choices on biological interpretation; Methods Part 4.7 -> 4.7.1.2 and 4.7.2.
-single-cell_analysis.ipynb coolab file for the machine learning analysis of the single-cell assay results. Described in Greta Lilla Banyai - Decoding cell migration – the impact of analytical choices on biological interpretation; Methods Part 4.7 -> 4.7.1.1 and 4.7.2.
+# Codes for the PhD Dissertation
+
+This repository contains the MATLAB and Python codes used in the PhD dissertation:
+
+**Gréta Lilla Bányai**
+*Decoding Cell Migration – The Impact of Analytical Choices on Biological Interpretation*
+
+## Repository structure
+
+### Single-cell migration analysis
+
+#### Simulation.m
+MATLAB script implementing the random walk simulation of cell migration, including the complete analysis pipeline described in the dissertation with the statistical analysis.
+
+**Dissertation reference:**
+Methods, Section 4.4.
+
+#### Single-cell_experiment.m
+MATLAB script containing the complete analysis pipeline for single-cell migration experiments, except for the determination of cell line-specific morphological features, which were extracted using ImageJ.
+
+The script includes:
+- noise filtering of semi-automatically tracked data,
+- calculation of migration parameters for manually tracked, semi-automatically tracked, and noise-filtered datasets,
+- Area Under the Curve (AUC) calculation,
+- statistical analyses.
+
+**Dissertation reference:**
+Methods, Sections 4.3.1–4.3.2.
+
+---
+
+### Machine learning pipeline for migration assay comparison
+
+#### scratch_ZE_assay_analysis.ipynb
+Google Colab notebook for the machine learning analysis of scratch assay and zone-exclusion (Z-E) assay data.
+
+**Dissertation reference:**
+Methods, Sections 4.7.1.2 and 4.7.2.
+
+#### single_cell_analysis.ipynb
+Google Colab notebook for the machine learning analysis of single-cell migration assay data.
+
+**Dissertation reference:**
+Methods, Sections 4.7.1.1 and 4.7.2.
+
+---
+
+## Software
+
+- MATLAB
+- Python (Google Colab / Jupyter Notebook)
