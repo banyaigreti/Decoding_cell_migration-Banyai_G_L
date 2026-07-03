@@ -1729,7 +1729,6 @@ function out = ternary(cond, a, b)
 end
 
 function [isSignificant, p_mean] = local_anova_bootstrap_equal(treat_vec, control_vec, n_per_group, n_boot, alpha)
-    % NaN-ek kidobása
     treat_vec   = treat_vec(~isnan(treat_vec));
     control_vec = control_vec(~isnan(control_vec));
 
@@ -1740,19 +1739,16 @@ function [isSignificant, p_mean] = local_anova_bootstrap_equal(treat_vec, contro
         return;
     end
 
-    % Valós mintaszám, ne lépjük túl a rendelkezésre állókat
     n = min([n_per_group, numel(treat_vec), numel(control_vec)]);
 
     pvals = NaN(n_boot,1);
     for b = 1:n_boot
-        % Véletlen részminta mindkét csoportból azonos elemszámmal
-        t_idx = randsample(numel(treat_vec),   n, true);  % ha kicsi a minta, engedjük az ismétlést
-        c_idx = randsample(numel(control_vec), n, false); % kontroll nagy, lehet ismétlés nélkül
+        t_idx = randsample(numel(treat_vec),   n, true);  
+        c_idx = randsample(numel(control_vec), n, false); 
 
         t_s = treat_vec(t_idx);
         c_s = control_vec(c_idx);
 
-        % 2 oszlopos mátrix: [Kezelés  Kontroll]
         X = [t_s(:), c_s(:)];
         % ANOVA, két csoport, címkék opcionálisak
         p = anova1(X, {'Kezelés','Kontroll'}, 'off');
@@ -1763,125 +1759,3 @@ function [isSignificant, p_mean] = local_anova_bootstrap_equal(treat_vec, contro
     isSignificant = (~isnan(p_mean)) && (p_mean < alpha);
 end
 
-
-% T_tf_maxe = {};
-% T_tf_msd = {};
-% T_tf_mu = {};
-% T_tf_v = {};
-% T_tf_v_a = {};
-% T_tf_dr = {};
-% 
-% V_e = {};
-% V_maxe = {};
-% V_msd = {};
-% V_mu = {};
-% V_v = {};
-% V_av = {};
-% V_dr = {};
-%
-% for i = 1:size(T_o_msd,2)
-%     elm_a_j = mean(T_o_e{i}, 2);
-%     maxe_a_j = mean(T_o_maxe{i},2);
-%     msd_a_j = mean(T_o_msd{i},2);
-%     v_a_j = mean(T_o_v{i},2);
-%     mu_a_j = mean(T_o_mu{i},2);
-%     av_a_j = mean(T_o_av{i},2);
-%     dr_a_j = mean(T_o_dr{i},2);
-%     if elm_a_j < min(thr_e) 
-%         T_tf_elmozd{end+1} = -1;
-%     elseif elm_a_j > max(thr_e) 
-%         T_tf_elmozd{end+1} = 1;
-%     else
-%         T_tf_elmozd{end+1} = 0;
-%     end
-%     if T_tf_elmozd{end} ~= 0
-%         V_e{end+1} = kez(i);
-%     else
-%         V_e{end+1} = 0;
-%     end
-% 
-%     if maxe_a_j < min(thr_maxe)
-%         T_tf_maxe{end+1} = -1;
-%     elseif maxe_a_j > max(thr_maxe)
-%         T_tf_maxe{end+1} = 1;
-%     else
-%         T_tf_maxe{end+1} = 0;
-%     end
-% 
-%     if T_tf_maxe{end} ~= 0
-%         V_maxe{end+1} = kez(i);
-%     else
-%         V_maxe{end+1} = 0;
-%     end
-% 
-%     if msd_a_j < min(thr_msd)
-%         T_tf_msd{end+1} = -1;
-%     elseif msd_a_j > max(thr_msd)
-%         T_tf_msd{end+1} = 1;
-%     else
-%         T_tf_msd{end+1} = 0;
-%     end
-% 
-%     if T_tf_msd{end} ~= 0
-%         V_msd{end+1} = kez(i);
-%     else
-%         V_msd{end+1} = 0;
-%     end
-% 
-%     if mu_a_j < min(thr_mu)
-%         T_tf_mu{end+1} = -1;
-%     elseif mu_a_j > max(thr_mu)
-%         T_tf_mu{end+1} = 1;
-%     else
-%         T_tf_mu{end+1} = 0;
-%     end
-% 
-%     if T_tf_mu{end} ~= 0
-%         V_mu{end+1} = kez(i);
-%     else
-%         V_mu{end+1} = 0;
-%     end
-% 
-%     if v_a_j < min(thr_v)
-%         T_tf_v{end+1} = -1;
-%     elseif v_a_j > max(thr_v)
-%         T_tf_v{end+1} = 1;
-%     else
-%         T_tf_v{end+1} = 0;
-%     end
-% 
-%     if T_tf_v{end} ~= 0
-%         V_v{end+1} = kez(i);
-%     else
-%         V_v{end+1} = 0;
-%     end
-% 
-%     if av_a_j < min(thr_v_a)
-%         T_tf_v_a{end+1} = -1;
-%     elseif av_a_j > max(thr_v_a)
-%         T_tf_v_a{end+1} = 1;
-%     else
-%         T_tf_v_a{end+1} = 0;
-%     end
-% 
-%     if T_tf_v_a{end} ~= 0
-%         V_av{end+1} = kez(i);
-%     else
-%         V_av{end+1} = 0;
-%     end
-% 
-%     if dr_a_j < min(thr_dr)
-%         T_tf_dr{end+1} = -1;
-%     elseif dr_a_j > max(thr_dr)
-%         T_tf_dr{end+1} = 1;
-%     else
-%         T_tf_dr{end+1} = 0;
-%     end
-% 
-%     if T_tf_dr{end} ~= 0
-%         V_dr{end+1} = kez(i);
-%     else
-%         V_dr{end+1} = 0;
-%     end
-% end
-% 
